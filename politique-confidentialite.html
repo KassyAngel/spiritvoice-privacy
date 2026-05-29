@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de Confidentialité — Spirit Voice & Ouija</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080810;
+            --bg-mid: #0f0f1a;
+            --card-bg: rgba(255,255,255,0.04);
+            --card-border: rgba(180,160,255,0.12);
+            --accent: #b89fff;
+            --accent-dim: rgba(180,160,255,0.5);
+            --gold: #c9a84c;
+            --gold-dim: rgba(201,168,76,0.4);
+            --text: #e8e0ff;
+            --text-mid: #a899cc;
+            --text-dim: #5a5070;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg);
+            background-image:
+                radial-gradient(ellipse 70% 50% at 15% 5%, rgba(100,60,200,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 85% 90%, rgba(201,168,76,0.06) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            min-height: 100vh;
+            padding: 80px 20px 60px;
+        }
+
+        /* Particules flottantes */
+        body::before {
+            content: '✦  ◉  ✦  ◌  ✦  ◉  ✦';
+            position: fixed; top: 0; left: 0; right: 0;
+            padding: 14px; text-align: center;
+            font-size: 0.55rem; letter-spacing: 0.5em;
+            color: var(--accent-dim);
+            pointer-events: none; z-index: 10;
+        }
+
+        .back-btn {
+            position: fixed; top: 16px; left: 16px; z-index: 999;
+            display: flex; align-items: center; gap: 8px;
+            padding: 10px 18px;
+            background: rgba(100,60,200,0.2);
+            border: 1px solid rgba(180,160,255,0.25);
+            border-radius: 50px;
+            color: var(--accent);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem; font-weight: 400; cursor: pointer;
+            backdrop-filter: blur(12px); transition: all 0.25s ease;
+            text-decoration: none;
+        }
+        .back-btn:hover { background: rgba(100,60,200,0.45); color: white; transform: translateY(-1px); }
+        .back-btn svg { width:15px; height:15px; flex-shrink:0; transition:transform 0.2s; }
+        .back-btn:hover svg { transform: translateX(-3px); }
+
+        .container { max-width: 840px; margin: 0 auto; }
+
+        .header { text-align: center; margin-bottom: 60px; }
+        .header-symbol {
+            font-size: 2.8rem; margin-bottom: 20px; display: block;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .app-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, rgba(100,60,200,0.35), rgba(180,160,255,0.15));
+            border: 1px solid var(--card-border);
+            color: var(--accent);
+            font-weight: 400; font-size: 0.78rem;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            padding: 6px 20px; border-radius: 20px; margin-bottom: 24px;
+        }
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 600; color: var(--text); line-height: 1.2; margin-bottom: 10px;
+        }
+        h1 em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .divider-ornament {
+            display: flex; align-items: center; justify-content: center;
+            gap: 12px; margin: 20px 0 8px;
+            color: var(--gold-dim); font-size: 0.7rem; letter-spacing: 0.3em;
+        }
+        .divider-ornament::before, .divider-ornament::after {
+            content: ''; flex: 1; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+        }
+        .date { color: var(--text-dim); font-size: 0.82rem; margin-top: 10px; }
+
+        .section {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 18px; padding: 34px 38px; margin-bottom: 14px;
+            border: 1px solid var(--card-border);
+            position: relative; overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .section:hover { border-color: rgba(180,160,255,0.22); }
+        .section::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(180,160,255,0.25), transparent);
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem; color: var(--accent);
+            margin-bottom: 18px; padding-bottom: 12px;
+            border-bottom: 1px solid rgba(180,160,255,0.15);
+            display: flex; align-items: center; gap: 12px;
+        }
+        h2 .num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 26px; height: 26px;
+            background: linear-gradient(135deg, rgba(100,60,200,0.7), rgba(180,160,255,0.4));
+            border: 1px solid var(--accent-dim);
+            color: var(--text); border-radius: 50%;
+            font-size: 0.72rem; font-family: 'Jost', sans-serif;
+            font-weight: 400; flex-shrink: 0;
+        }
+        h3 { font-weight: 400; color: var(--text-mid); font-size: 0.98rem; margin-top: 20px; margin-bottom: 10px; letter-spacing: 0.03em; }
+        p { margin-bottom: 13px; color: var(--text); font-size: 0.93rem; opacity: 0.88; }
+        ul, ol { margin-left: 18px; margin-bottom: 13px; }
+        li { margin-bottom: 7px; color: var(--text); font-size: 0.93rem; opacity: 0.88; }
+        strong { font-weight: 500; color: var(--accent); }
+        a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-dim); transition: border-color 0.2s; }
+        a:hover { border-color: var(--gold); }
+
+        .info-box {
+            background: rgba(100,60,200,0.1);
+            border-left: 2px solid var(--accent-dim);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 20px; margin: 14px 0;
+        }
+        .info-box p { opacity: 1; margin-bottom: 6px; }
+        .info-box p:last-child { margin-bottom: 0; }
+
+        .warning-box {
+            background: rgba(180,160,255,0.05);
+            border: 1px solid rgba(180,160,255,0.18);
+            border-radius: 12px; padding: 16px 20px; margin: 14px 0;
+        }
+        .warning-box .wtitle { color: var(--accent); font-weight: 500; font-size: 0.88rem; margin-bottom: 8px; }
+        .warning-box p { opacity: 1; margin-bottom: 6px; }
+        .warning-box p:last-child { margin-bottom: 0; }
+
+        .success-box {
+            background: rgba(201,168,76,0.06);
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 12px; padding: 16px 20px; margin: 14px 0;
+        }
+        .success-box .stitle { color: var(--gold); font-weight: 500; font-size: 0.88rem; margin-bottom: 8px; }
+        .success-box p { opacity: 1; margin-bottom: 6px; }
+        .success-box p:last-child { margin-bottom: 0; }
+
+        .premium-box {
+            background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(100,60,200,0.08));
+            border: 1px solid rgba(201,168,76,0.25);
+            border-radius: 14px; padding: 20px 24px; margin: 16px 0;
+            text-align: center;
+        }
+        .premium-box .price { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 4px; }
+        .premium-box .price-sub { font-size: 0.82rem; color: var(--text-dim); }
+
+        footer {
+            text-align: center; margin-top: 50px; padding-top: 30px;
+            border-top: 1px solid rgba(180,160,255,0.12);
+        }
+        footer p { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 5px; }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem; color: var(--accent); margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+        .footer-ornament { color: var(--gold-dim); font-size: 0.9rem; letter-spacing: 0.4em; margin-bottom: 12px; }
+
+        @media (max-width: 640px) {
+            .section { padding: 22px 18px; }
+            h2 { font-size: 1.15rem; }
+        }
+    </style>
+</head>
+<body>
+
+<a class="back-btn" onclick="if(window.history.length>1){window.history.back();}else{window.close();}">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Retour
+</a>
+
+<div class="container">
+    <div class="header">
+        <span class="header-symbol">👻</span>
+        <div class="app-badge">◉ Spirit Voice & Ouija</div>
+        <h1>Politique de <em>Confidentialité</em></h1>
+        <div class="divider-ornament">✦ ◌ ✦</div>
+        <p class="date">Dernière mise à jour : mai 2026</p>
+    </div>
+
+    <div class="section">
+        <h2>Introduction</h2>
+        <p>Le respect de votre vie privée est important pour nous. Cette politique de confidentialité explique quelles données personnelles nous collectons via l'application <strong>Spirit Voice & Ouija</strong>, comment nous les utilisons, les protégeons et quels sont vos droits.</p>
+        <p>Nous vous invitons à lire attentivement ces conditions avant de fournir vos données personnelles.</p>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">1</span>Responsable du traitement des données</h2>
+        <div class="info-box">
+            <p><strong>Kc Dev</strong> — Auto-entrepreneur</p>
+            <p><strong>SIRET :</strong> 992 482 745 00013</p>
+            <p><strong>Localisation :</strong> France</p>
+            <p><strong>Email :</strong> <a href="mailto:cartomystik@gmail.com">cartomystik@gmail.com</a></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">2</span>Âge minimum et protection des mineurs</h2>
+        <div class="warning-box">
+            <p class="wtitle">⚠️ Âge minimum requis</p>
+            <p>L'utilisation de Spirit Voice & Ouija est réservée aux personnes âgées de <strong>13 ans et plus</strong>. Pour les utilisateurs de moins de 18 ans, le consentement des parents ou tuteurs légaux est requis avant l'utilisation, la fourniture de données personnelles ou l'achat Premium.</p>
+        </div>
+        <p>Nous ne collectons pas sciemment de données personnelles auprès de personnes de moins de 13 ans. Si vous avez moins de 13 ans, vous ne devez pas utiliser cette application.</p>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">3</span>Principes de protection des données</h2>
+        <p>Nous nous engageons à respecter les principes suivants :</p>
+        <ul>
+            <li><strong>Licéité, loyauté et transparence :</strong> Nous aurons toujours besoin de votre consentement pour traiter vos données et vous informerons de manière transparente.</li>
+            <li><strong>Minimisation des données :</strong> Nous ne collectons que les données strictement nécessaires.</li>
+            <li><strong>Limitation de la durée de conservation :</strong> Vos données ne seront conservées que pendant la durée nécessaire.</li>
+            <li><strong>Intégrité et confidentialité :</strong> Nous prenons toutes les mesures nécessaires pour garantir la sécurité de vos données.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">4</span>Données collectées</h2>
+
+        <h3>4.1 Données stockées localement (dans votre appareil)</h3>
+        <p>Les données suivantes sont stockées <strong>uniquement dans votre appareil</strong> et <strong>ne sont jamais envoyées à nos serveurs</strong> :</p>
+        <ul>
+            <li>Votre langue préférée (français / anglais)</li>
+            <li>Votre journal de sessions Spirit Voice (mots captés, durées, fréquences utilisées)</li>
+            <li>Vos préférences d'ambiance et de thème visuel</li>
+            <li>Votre type de voix sélectionné</li>
+            <li>Votre sensibilité microphone configurée</li>
+            <li>Votre préférence de visualiseur</li>
+            <li>Le compteur quotidien de questions Ouija</li>
+            <li>Vos paramètres de vibration</li>
+        </ul>
+        <div class="info-box">
+            <p><strong>✨ Important :</strong> Ces données restent uniquement sur votre appareil. Si vous désinstallez l'application ou supprimez les données, ces informations seront perdues définitivement.</p>
+        </div>
+
+        <h3>4.2 Données transitant via notre serveur sécurisé (Table de Ouija IA)</h3>
+        <p>Lorsque vous posez une question à la Table de Ouija, celle-ci est transmise de façon <strong>anonyme et chiffrée</strong> à notre serveur proxy Cloudflare Workers, puis à l'API Claude d'Anthropic pour générer la réponse de l'esprit. <strong>Aucune donnée personnelle identifiable n'est stockée</strong> lors de ce processus.</p>
+        <div class="info-box">
+            <p><strong>Cloudflare Workers</strong> — États-Unis / Mondial</p>
+            <p>Finalité : Proxy sécurisé pour la transmission des questions Ouija. Aucune donnée personnelle stockée.</p>
+            <p><a href="https://www.cloudflare.com/privacypolicy/" target="_blank">https://www.cloudflare.com/privacypolicy/</a></p>
+        </div>
+        <div class="info-box">
+            <p><strong>Anthropic (API Claude)</strong> — États-Unis</p>
+            <p>Finalité : Génération des réponses de l'esprit via intelligence artificielle. Les questions sont traitées selon la politique de confidentialité d'Anthropic.</p>
+            <p><a href="https://www.anthropic.com/privacy" target="_blank">https://www.anthropic.com/privacy</a></p>
+        </div>
+
+        <h3>4.3 Données collectées pour la version Premium</h3>
+        <p>Uniquement si vous souscrivez à la version Premium :</p>
+        <ul>
+            <li><strong>Identifiant utilisateur RevenueCat :</strong> Pour la gestion des achats via Google Play</li>
+            <li><strong>Date de souscription et d'expiration :</strong> Pour gérer la validité de votre accès Premium</li>
+            <li><strong>Statut de paiement :</strong> Confirmation du paiement via Google Play Billing</li>
+            <li><strong>Type d'abonnement souscrit :</strong> Mensuel (2,99 €/mois) ou Annuel (17,99 €/an)</li>
+        </ul>
+        <div class="premium-box">
+            <p class="price">✦ Formules Premium</p>
+            <p style="color:var(--text-mid);font-size:0.9rem;margin:8px 0 4px"><strong style="color:var(--gold)">Mensuel :</strong> 2,99 €/mois — renouvelable chaque mois</p>
+            <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:4px"><strong style="color:var(--gold)">Annuel :</strong> 17,99 €/an — renouvelable chaque année (économisez 50%)</p>
+            <p class="price-sub">Les tarifs peuvent varier selon votre région et sont affichés dans l'application avant tout achat.</p>
+        </div>
+
+        <h3>4.4 Données techniques collectées automatiquement</h3>
+        <ul>
+            <li>Type d'appareil et système d'exploitation</li>
+            <li>Données d'utilisation anonymisées de l'application</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">5</span>Finalités du traitement</h2>
+        <h3>5.1 Fonctionnement de l'application</h3>
+        <ul>
+            <li>Personnaliser votre expérience (langue, thème, voix, préférences)</li>
+            <li>Sauvegarder votre journal de sessions Spirit Voice</li>
+            <li>Gérer le compteur quotidien de questions Ouija (version gratuite)</li>
+            <li>Transmettre vos questions à l'IA pour générer les réponses de l'esprit</li>
+            <li>Afficher le contenu adapté à votre langue</li>
+        </ul>
+        <h3>5.2 Gestion de l'abonnement Premium</h3>
+        <ul>
+            <li>Activer votre accès Premium après paiement</li>
+            <li>Restaurer votre abonnement après réinstallation</li>
+            <li>Débloquer l'accès au contenu exclusif (Ouija illimité, voix supplémentaires, thèmes premium, fréquences avancées, sensibilité maximale)</li>
+        </ul>
+        <h3>5.3 Amélioration de l'application</h3>
+        <ul>
+            <li>Analyser l'utilisation anonymisée de l'application</li>
+            <li>Corriger les bugs et améliorer les performances</li>
+            <li>Développer de nouvelles fonctionnalités</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">6</span>Base juridique du traitement</h2>
+        <ul>
+            <li><strong>Consentement :</strong> Pour l'utilisation de l'application</li>
+            <li><strong>Exécution du contrat :</strong> Pour la gestion de votre abonnement Premium</li>
+            <li><strong>Intérêt légitime :</strong> Pour l'amélioration de l'application et la prévention de la fraude</li>
+            <li><strong>Obligations légales :</strong> Pour le respect de la législation en vigueur</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">7</span>Durée de conservation des données</h2>
+        <h3>7.1 Données stockées localement</h3>
+        <p>Conservées jusqu'à ce que vous les supprimiez (désinstallation de l'application, suppression des données, ou effacement du cache).</p>
+        <h3>7.2 Données Ouija (questions IA)</h3>
+        <p>Les questions posées à la Table de Ouija ne sont <strong>pas stockées</strong> par nos soins. Elles transitent uniquement pour générer la réponse en temps réel.</p>
+        <h3>7.3 Données Premium</h3>
+        <ul>
+            <li><strong>Données d'abonnement :</strong> Conservées pendant la durée de votre abonnement + 3 ans (obligations comptables et fiscales)</li>
+            <li><strong>Données de paiement Google Play :</strong> Gérées par Google Play et RevenueCat selon leurs propres politiques</li>
+        </ul>
+        <h3>7.4 Suppression des données</h3>
+        <p>Vous pouvez demander la suppression de vos données à tout moment à <a href="mailto:cartomystik@gmail.com">cartomystik@gmail.com</a>. Nous procéderons dans un délai maximum de 30 jours.</p>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">8</span>Partage des données avec des tiers</h2>
+        <p>Nous ne vendons, ne louons ni ne transférons vos données personnelles à des tiers, sauf dans les cas suivants :</p>
+
+        <div class="info-box">
+            <p><strong>Google Play Billing</strong> — États-Unis</p>
+            <p>Finalité : Traitement des paiements Premium. Nous ne collectons ni ne stockons vos informations de paiement.</p>
+            <p><a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+        </div>
+
+        <div class="info-box">
+            <p><strong>RevenueCat, Inc.</strong> — États-Unis</p>
+            <p>Finalité : Gestion et synchronisation des achats in-app. Données partagées : identifiant utilisateur, statut d'abonnement, dates d'expiration.</p>
+            <p><a href="https://www.revenuecat.com/privacy" target="_blank">https://www.revenuecat.com/privacy</a></p>
+        </div>
+
+        <div class="info-box">
+            <p><strong>Cloudflare Workers</strong> — Mondial</p>
+            <p>Finalité : Proxy sécurisé pour les requêtes IA de la Table de Ouija. Aucune donnée personnelle stockée.</p>
+            <p><a href="https://www.cloudflare.com/privacypolicy/" target="_blank">https://www.cloudflare.com/privacypolicy/</a></p>
+        </div>
+
+        <div class="info-box">
+            <p><strong>Anthropic, PBC</strong> — États-Unis</p>
+            <p>Finalité : Génération des réponses IA pour la Table de Ouija. Les questions sont anonymes et non associées à votre identité.</p>
+            <p><a href="https://www.anthropic.com/privacy" target="_blank">https://www.anthropic.com/privacy</a></p>
+        </div>
+
+        <h3>Transferts internationaux</h3>
+        <p>Les transferts vers les États-Unis sont encadrés par les clauses contractuelles types de la Commission européenne et le Data Privacy Framework (DPF).</p>
+
+        <h3>Obligations légales</h3>
+        <p>Nous pouvons être amenés à divulguer vos données si la loi l'exige.</p>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">9</span>Cookies et technologies de suivi</h2>
+        <h3>Stockage strictement nécessaire</h3>
+        <ul>
+            <li><strong>localStorage :</strong> Sauvegarde de vos préférences, journal de sessions, paramètres et compteur Ouija (côté client uniquement)</li>
+        </ul>
+        <h3>Technologies de gestion des achats</h3>
+        <ul>
+            <li><strong>RevenueCat SDK :</strong> Gestion des achats et synchronisation Premium</li>
+            <li><strong>Google Play Billing :</strong> Traitement des paiements in-app</li>
+        </ul>
+        <div class="success-box">
+            <p class="stitle">✨ Aucune publicité</p>
+            <p>Spirit Voice & Ouija ne contient <strong>aucune publicité</strong> et n'utilise <strong>aucun tracker publicitaire</strong>. L'application est entièrement sans pub, aussi bien en version gratuite qu'en version Premium.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">10</span>Vos droits (RGPD)</h2>
+        <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+        <ul>
+            <li><strong>Droit d'accès :</strong> Demander l'accès à toutes vos données personnelles</li>
+            <li><strong>Droit de rectification :</strong> Demander la correction de données inexactes</li>
+            <li><strong>Droit à l'effacement :</strong> Demander la suppression de vos données</li>
+            <li><strong>Droit à la limitation :</strong> Demander la limitation du traitement dans certaines circonstances</li>
+            <li><strong>Droit d'opposition :</strong> Vous opposer au traitement</li>
+            <li><strong>Droit à la portabilité :</strong> Recevoir vos données dans un format lisible par machine</li>
+        </ul>
+        <h3>Comment exercer vos droits</h3>
+        <div class="info-box">
+            <p><strong>Email :</strong> <a href="mailto:cartomystik@gmail.com">cartomystik@gmail.com</a></p>
+            <p>Délai de réponse : <strong>1 mois maximum</strong>. Une preuve d'identité pourra être demandée.</p>
+        </div>
+        <h3>Droit de plainte</h3>
+        <div class="info-box">
+            <p><strong>CNIL — Commission Nationale de l'Informatique et des Libertés</strong></p>
+            <p>3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07</p>
+            <p>Tél : 01 53 73 22 22 — <a href="https://www.cnil.fr" target="_blank">https://www.cnil.fr</a></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">11</span>Sécurité des données</h2>
+        <h3>11.1 Mesures techniques</h3>
+        <ul>
+            <li><strong>Stockage local sécurisé :</strong> Vos données personnelles restent sur votre appareil</li>
+            <li><strong>Clé API sécurisée :</strong> La clé d'accès à l'IA est stockée côté serveur (Cloudflare), jamais dans l'application</li>
+            <li><strong>Paiements sécurisés :</strong> Aucune donnée bancaire stockée par nous</li>
+            <li><strong>Communications chiffrées :</strong> Toutes les communications sont sécurisées via HTTPS</li>
+        </ul>
+        <h3>11.2 Notification en cas de violation</h3>
+        <p>En cas de violation de données susceptible d'engendrer un risque élevé, nous vous en informerons dans les <strong>72 heures</strong>, conformément au RGPD.</p>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">12</span>Modifications de la politique</h2>
+        <p>Nous nous réservons le droit de modifier la présente politique pour nous conformer à l'évolution de la législation, refléter des changements dans nos pratiques ou améliorer la clarté des informations.</p>
+        <div class="info-box">
+            <p>En cas de modification substantielle, vous serez informé via une notification dans l'application.</p>
+            <p>Date de dernière modification : <strong>mai 2026</strong></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">13</span>Contact</h2>
+        <div class="info-box">
+            <p><strong>Email :</strong> <a href="mailto:cartomystik@gmail.com">cartomystik@gmail.com</a></p>
+            <p>Délai de réponse : 1 mois maximum.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-ornament">✦ ◉ ✦</div>
+        <p class="footer-logo">👻 Spirit Voice & Ouija</p>
+        <p>Politique de confidentialité — Kc Dev — Mai 2026</p>
+        <p>Conforme au RGPD (Règlement UE 2016/679)</p>
+    </footer>
+</div>
+</body>
+</html>
